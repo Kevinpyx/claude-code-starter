@@ -1,61 +1,61 @@
 ---
 name: review
-description: 代码审查 — 从安全性、可读性、潜在 bug 三个维度审查当前代码更改
+description: Code review — check current code changes across three dimensions: security, readability, and potential bugs
 ---
 
-# 代码审查
+# Code Review
 
-审查当前未提交的代码更改，帮用户在提交前发现问题。
+Review the current uncommitted code changes to help the user catch issues before committing.
 
-## 步骤
+## Steps
 
-### 1. 获取更改内容
+### 1. Get the changes
 
-运行 `git diff` 和 `git diff --staged` 获取所有未提交的更改。
+Run `git diff` and `git diff --staged` to get all uncommitted changes.
 
-如果没有任何更改，告诉用户「没有需要审查的代码更改」并结束。
+If there are no changes, tell the user "No code changes to review" and stop.
 
-### 2. 逐文件审查
+### 2. Review file by file
 
-对每个改动的文件，从以下三个维度检查：
+For each changed file, check across these three dimensions:
 
-**安全性**
-- 是否有硬编码的密钥、密码、token
-- 是否有 SQL 注入、XSS 等安全漏洞
-- 是否有不安全的文件操作或命令执行
-- 用户输入是否经过验证
+**Security**
+- Any hardcoded secrets, passwords, or tokens
+- SQL injection, XSS, or other security vulnerabilities
+- Unsafe file operations or command execution
+- User input not being validated
 
-**可读性**
-- 变量和函数命名是否清晰
-- 逻辑是否容易理解
-- 是否有过于复杂的嵌套或过长的函数
-- 是否与项目现有风格一致
+**Readability**
+- Are variable and function names clear
+- Is the logic easy to follow
+- Any overly complex nesting or excessively long functions
+- Is it consistent with the existing project style
 
-**潜在 Bug**
-- 边界条件是否处理（空值、空列表、超出范围）
-- 错误处理是否完整（try/catch 是否合理）
-- 是否有逻辑错误（条件判断、循环终止条件）
-- 是否可能影响现有功能
+**Potential Bugs**
+- Edge cases handled (null values, empty lists, out-of-range inputs)
+- Error handling complete (try/catch used correctly)
+- Logic errors (conditions, loop termination)
+- Could this break existing functionality
 
-### 3. 输出审查报告
+### 3. Output the review report
 
-用中文输出简洁的审查报告，格式如下：
+Output a concise review report in English:
 
 ```
-## 审查结果
+## Review Results
 
-### 需要修复
-- [文件名:行号] 问题描述 + 建议的修复方式
+### Must Fix
+- [filename:line] Description of the issue + suggested fix
 
-### 建议改进
-- [文件名:行号] 改进描述
+### Suggestions
+- [filename:line] Description of the improvement
 
-### 没问题
-- 列出审查通过的文件
+### Looks Good
+- List files that passed review
 ```
 
-规则：
-- 只报告真正有价值的问题，不要吹毛求疵
-- 每个问题给出具体的修复建议，不要只说「这里有问题」
-- 如果代码没有问题，直接说「代码看起来没问题，可以提交」
-- 不要建议添加注释、文档或与改动无关的重构
+Rules:
+- Only report issues that are genuinely worth fixing — don't nitpick
+- Give a specific fix suggestion for each issue, not just "there's a problem here"
+- If the code looks fine, just say "Code looks good, ready to commit"
+- Do not suggest adding comments, docs, or refactors unrelated to the changes

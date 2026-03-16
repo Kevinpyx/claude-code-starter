@@ -1,51 +1,51 @@
 ---
 name: setup
-description: 交互式配置 CLAUDE.md — 通过问答自动填写项目信息，替换所有占位符
+description: Interactive CLAUDE.md configuration — fill in project info through Q&A, replacing all placeholders
 ---
 
-# 项目初始化配置
+# Project Setup
 
-你要帮用户配置 CLAUDE.md 中的项目信息。按照以下步骤逐个提问，每次只问一个问题。
+Help the user configure the project info in CLAUDE.md. Ask the questions below one at a time.
 
-## 步骤
+## Steps
 
-1. 先读取项目根目录的 CLAUDE.md 文件
+1. First, read the CLAUDE.md file in the project root.
 
-2. 依次提问以下信息（每次一个问题，给出默认值建议）：
+2. Ask the following questions one at a time (with a suggested default value each time):
 
-   **问题 1：项目名称**
-   > 你的项目叫什么名字？
-   （观察当前目录名作为默认建议）
+   **Question 1: Project name**
+   > What is your project called?
+   (Use the current directory name as the suggested default)
 
-   **问题 2：技术栈**
-   > 这个项目用的什么技术栈？比如 Python、React、Node.js 等
-   （观察项目中的 package.json / pyproject.toml / go.mod 等文件来推荐）
+   **Question 2: Tech stack**
+   > What tech stack does this project use? e.g. Python, React, Node.js
+   (Check package.json / pyproject.toml / go.mod etc. to suggest a value)
 
-   **问题 3：项目描述**
-   > 用一句话描述这个项目是做什么的？
+   **Question 3: Project description**
+   > In one sentence, what does this project do?
 
-   **问题 4：源代码目录**
-   > 你的源代码放在哪个目录？
-   （观察项目结构，建议常见的如 src、app、lib）
+   **Question 4: Source directory**
+   > Where is your source code located?
+   (Check the project structure and suggest common ones like src, app, lib)
 
-   **问题 5：测试目录**
-   > 你的测试文件放在哪个目录？
-   （建议常见的如 tests、test、__tests__）
+   **Question 5: Test directory**
+   > Where are your test files located?
+   (Suggest common ones like tests, test, __tests__)
 
-   **问题 6：Lint 命令**
-   > 你用什么命令检查代码规范？比如 `ruff check .`、`eslint .`、`npx prettier --check .`
-   > 如果还没有，可以先跳过，输入「无」
-   （根据技术栈推荐对应的 lint 工具）
+   **Question 6: Lint command**
+   > What command do you use to check code style? e.g. `ruff check .`, `eslint .`, `npx prettier --check .`
+   > If you don't have one yet, you can skip this — just type "none"
+   (Suggest the appropriate lint tool based on the tech stack)
 
-3. 收集完所有信息后，替换 CLAUDE.md 中的所有 `{{placeholder}}`：
-   - `{{project_name}}` → 用户回答的项目名称
-   - `{{tech_stack}}` → 用户回答的技术栈
-   - `{{project_description}}` → 用户回答的项目描述
-   - `{{source_dir}}` → 用户回答的源代码目录
-   - `{{test_dir}}` → 用户回答的测试目录
-   - `{{lint_command}}` → 用户回答的 lint 命令（如果用户说「无」或「跳过」，替换为「暂无」）
+3. After collecting all info, replace all `{{placeholder}}` values in CLAUDE.md:
+   - `{{project_name}}` → user's project name
+   - `{{tech_stack}}` → user's tech stack
+   - `{{project_description}}` → user's project description
+   - `{{source_dir}}` → user's source directory
+   - `{{test_dir}}` → user's test directory
+   - `{{lint_command}}` → user's lint command (if the user said "none" or "skip", replace with "none")
 
-4. 展示替换后的「项目基本信息」区块，让用户确认：
-   > 配置完成，以下是你的项目信息，确认无误吗？
+4. Show the updated "Project Info" section and ask for confirmation:
+   > Setup complete. Here's your project info — does everything look right?
 
-5. 用户确认后，保存文件。如果用户要修改，回到对应问题重新提问。
+5. Once confirmed, save the file. If the user wants to change something, go back to that question.

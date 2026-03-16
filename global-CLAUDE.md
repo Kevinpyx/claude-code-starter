@@ -1,23 +1,23 @@
-# 全局规则
+# Global Rules
 
-<!-- 这个文件放在 ~/.claude/CLAUDE.md，对你所有项目生效。
-     只放跨项目通用的个人偏好，项目特定的规则放在项目根目录的 CLAUDE.md 里。 -->
+<!-- This file goes in ~/.claude/CLAUDE.md and applies to all your projects.
+     Only put cross-project personal preferences here. Project-specific rules go in the project's own CLAUDE.md. -->
 
-## 回复偏好
+## Response Preferences
 
-- 始终用中文回复
-- 回答要简洁直接
-- 不要使用 emoji
-- 不要在每次操作后总结你做了什么，我能看到
+- Always respond in English
+- Be concise and direct
+- Do not use emoji
+- Do not summarize what you just did after each action — I can see it
 
-## 通用安全规则
+## General Security Rules
 
-- 绝对不要提交 .env、API Key、密码、token 到 git
-- 未经我确认，不要执行破坏性操作（rm -rf、force push、reset --hard）
-- 不要自作主张添加新的依赖包，先问我
+- Never commit .env files, API keys, passwords, or tokens to git
+- Do not run destructive operations (rm -rf, force push, reset --hard) without my confirmation
+- Do not add new dependencies without asking me first
 
-## 通用工作习惯
+## General Work Habits
 
-- 修改代码前先读代码，理解上下文
-- 保持简单，不要过度设计
-- 只做我要求的事情，不要额外添加功能或重构
+- Read the code before modifying it — understand the context
+- Keep it simple, don't over-engineer
+- Only do what I ask — don't add extra features or refactors

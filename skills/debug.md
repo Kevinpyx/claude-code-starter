@@ -1,62 +1,62 @@
 ---
 name: debug
-description: 系统化调试 — 用科学方法排查 bug，禁止猜测性修复，逐步定位根因
+description: Systematic debugging — use the scientific method to find bugs, no guessing, step-by-step root cause analysis
 ---
 
-# 系统化调试
+# Systematic Debugging
 
-用科学方法排查问题，不要猜、不要碰运气。每一步都要有证据支撑。
+Find the root cause using a scientific approach. No guessing. Every step must be evidence-based.
 
-## 核心原则
+## Core Principles
 
-- 禁止「改一下试试看」— 每次修改必须基于明确的假设
-- 禁止跳步 — 必须按顺序执行每个步骤
-- 记录每一步的发现 — 避免兜圈子
+- No "let me just try changing this" — every change must be based on a clear hypothesis
+- No skipping steps — follow the steps in order
+- Record every finding — avoid going in circles
 
-## 步骤
+## Steps
 
-### 1. 理解问题
+### 1. Understand the problem
 
-询问用户：
-> 遇到了什么问题？可以描述现象、贴报错信息、或者告诉我哪个功能不正常。
+Ask the user:
+> What's the problem? You can describe what's happening, paste the error message, or tell me which feature isn't working.
 
-收集信息：
-- 错误信息（完整的报错日志或截图）
-- 什么时候开始出现的
-- 之前做了什么改动
-- 期望的行为是什么
+Collect:
+- Error messages (full logs or screenshots)
+- When it started happening
+- What changed before it started
+- What the expected behavior is
 
-### 2. 复现问题
+### 2. Reproduce the problem
 
-- 找到相关的代码文件，阅读并理解上下文
-- 尝试复现问题（运行代码、运行测试）
-- 确认问题确实存在，记录复现步骤
+- Find the relevant code files, read and understand the context
+- Try to reproduce the issue (run the code, run tests)
+- Confirm the problem exists and record the reproduction steps
 
-如果无法复现，告诉用户并请求更多信息。不要在无法复现的情况下猜测修复。
+If it can't be reproduced, tell the user and ask for more information. Do not guess at a fix for an unreproduced issue.
 
-### 3. 定位根因
+### 3. Identify the root cause
 
-- 根据错误信息和代码逻辑，提出假设
-- 用最小范围的验证来确认或排除假设（加日志、断点、单元测试）
-- 如果第一个假设不成立，记录原因，提出下一个假设
-- 缩小范围直到找到根因
+- Based on the error and code logic, form a hypothesis
+- Use the smallest possible test to confirm or rule out the hypothesis (add logs, breakpoints, unit tests)
+- If the first hypothesis is wrong, record why and form the next one
+- Narrow down until the root cause is found
 
-记录格式：
+Log format:
 ```
-假设 1：xxx
-验证：xxx
-结果：确认 / 排除（原因：xxx）
+Hypothesis 1: xxx
+Verification: xxx
+Result: Confirmed / Ruled out (Reason: xxx)
 ```
 
-### 4. 修复
+### 4. Fix
 
-- 用最小改动修复问题
-- 解释改了什么、为什么这样改
-- 运行测试确认修复有效
-- 检查修复是否可能引入新问题
+- Apply the smallest change that fixes the problem
+- Explain what was changed and why
+- Run tests to confirm the fix works
+- Check whether the fix could introduce new issues
 
-### 5. 验证
+### 5. Verify
 
-- 重新运行复现步骤，确认问题已解决
-- 运行完整测试套件，确认没有破坏其他功能
-- 告诉用户修复完成，总结根因和修复方案
+- Re-run the reproduction steps to confirm the issue is resolved
+- Run the full test suite to confirm nothing else is broken
+- Tell the user the fix is complete, summarize the root cause and the fix

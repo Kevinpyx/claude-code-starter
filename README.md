@@ -1,64 +1,64 @@
-# Claude Code 新手模板
+# Claude Code Starter Template
 
-让 Claude Code 更懂你的项目。一套开箱即用的 CLAUDE.md 模板和实用 Skills。
+A ready-to-use CLAUDE.md template and practical Skills to make Claude Code work better for your project.
 
-## 使用方法
+## How to Use
 
-### 第一步：下载模板
+### Step 1: Download the template
 
-在你的项目中打开 Claude Code，输入：
+Open Claude Code in your project and type:
 
 ```
-帮我从 https://github.com/lighthouse-strategy/claude-code-starter 下载 CLAUDE.md 到项目根目录，skills 文件夹下载到 .claude/skills/
+Help me download CLAUDE.md from https://github.com/lighthouse-strategy/claude-code-starter to the project root, and the skills folder to .claude/skills/
 ```
 
-### 第二步：配置项目信息
+### Step 2: Configure project info
 
 ```
 /setup
 ```
 
-Claude 会逐步问你项目的基本信息，自动填写模板中的占位符。
+Claude will ask you about your project step by step and automatically fill in the placeholders.
 
-## 模板包含什么
+## What's Included
 
-### CLAUDE.md — 项目规则文件
+### CLAUDE.md — Project Rules File
 
-| 区块 | 作用 |
-|------|------|
-| 回复语言与风格 | 让 Claude 用中文回复，保持简洁 |
-| 项目基本信息 | 告诉 Claude 你的项目是什么 |
-| 代码规范 | 统一命名、commit 格式、分支策略 |
-| 安全铁律 | 防止泄露密钥、误删文件等危险操作 |
-| 工作流程 | 确保先读代码再改、改完先测试再提交 |
-| 不要做什么 | 明确禁止 Claude 的行为，避免帮倒忙 |
-| 已知陷阱 | 记录项目的坑，Claude 不会再踩 |
+| Section | Purpose |
+|---------|---------|
+| Response Language & Style | Keep Claude's responses in English and concise |
+| Project Info | Tell Claude what your project is |
+| Code Standards | Unified naming, commit format, branch strategy |
+| Security Rules | Prevent leaking secrets or destructive mistakes |
+| Workflow | Ensure Claude reads before editing, tests before committing |
+| Don'ts | Explicitly prohibit certain Claude behaviors |
+| Known Pitfalls | Record project-specific gotchas so Claude won't repeat them |
 
-### Skills — 实用技能
+### Skills — Useful Commands
 
-| 命令 | 作用 |
-|------|------|
-| `/setup` | 交互式配置项目信息 |
-| `/commit` | 安全提交：lint 检查 + 敏感信息扫描 + 规范 commit message |
-| `/review` | 代码审查：安全性、可读性、潜在 bug 三维度检查 |
-| `/debug` | 系统化调试：禁止猜测，逐步定位根因 |
+| Command | Purpose |
+|---------|---------|
+| `/setup` | Interactive project configuration |
+| `/commit` | Safe commit: lint check + sensitive info scan + proper commit message |
+| `/review` | Code review: security, readability, and potential bug checks |
+| `/debug` | Systematic debugging: no guessing, step-by-step root cause analysis |
 
-## 进阶用法
+## Advanced Usage
 
-### 全局 CLAUDE.md
+### Global CLAUDE.md
 
-除了项目级的 CLAUDE.md，你还可以创建一个全局配置，让所有项目共享通用规则（比如「用中文回复」）：
+In addition to the project-level CLAUDE.md, you can create a global config that applies to all your projects (e.g. "always respond in English"):
 
 ```
-帮我把这个 repo 的 global-CLAUDE.md 的内容保存到 ~/.claude/CLAUDE.md
+Help me save the contents of global-CLAUDE.md from this repo to ~/.claude/CLAUDE.md
 ```
 
-### 已经有项目了？
+### Already have a project?
 
-如果你的项目已经有代码，也可以先让 Claude 自动生成一个基础版：
+If your project already has code, you can also let Claude auto-generate a baseline first:
 
 ```
 /init
 ```
 
-然后再参考本模板补充你需要的规则。
+Then use this template as a reference to add the rules you need.

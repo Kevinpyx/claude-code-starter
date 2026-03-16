@@ -1,56 +1,56 @@
 ---
 name: commit
-description: 安全提交代码 — 自动检查代码规范、扫描敏感信息、生成规范的 commit message
+description: Safe commit — automatically checks code style, scans for sensitive info, and generates a proper commit message
 ---
 
-# 安全提交流程
+# Safe Commit Process
 
-按以下步骤执行提交，每一步都要完成才能进入下一步。
+Follow these steps in order. Each step must be completed before moving to the next.
 
-## 步骤
+## Steps
 
-### 1. 检查是否有可提交的更改
+### 1. Check for changes to commit
 
-运行 `git status` 查看当前状态。如果没有任何更改，告诉用户「没有需要提交的更改」并结束。
+Run `git status` to see the current state. If there are no changes, tell the user "Nothing to commit" and stop.
 
-### 2. 运行代码规范检查
+### 2. Run lint check
 
-读取 CLAUDE.md 中的 lint 命令。如果配置了 lint 命令（不是「暂无」），运行它。
+Read the lint command from CLAUDE.md. If a lint command is configured (not "none"), run it.
 
-- 如果 lint 通过：继续下一步
-- 如果 lint 失败：展示错误，询问用户「要我帮你修复这些问题吗？」
-  - 修复后重新运行 lint，直到通过
-- 如果没有配置 lint：跳过这一步
+- If lint passes: continue to the next step
+- If lint fails: show the errors and ask the user "Should I fix these for you?"
+  - Fix them and re-run lint until it passes
+- If no lint command is configured: skip this step
 
-### 3. 扫描敏感信息
+### 3. Scan for sensitive information
 
-检查所有 staged 文件，扫描以下内容：
-- `.env` 文件或包含 `API_KEY`、`SECRET`、`PASSWORD`、`TOKEN` 赋值的行
-- 硬编码的密钥（长字符串，看起来像 key/token 的值）
-- 私钥文件（.pem、.key）
+Check all staged files for:
+- `.env` files or lines containing `API_KEY`, `SECRET`, `PASSWORD`, `TOKEN` assignments
+- Hardcoded secrets (long strings that look like keys or tokens)
+- Private key files (.pem, .key)
 
-如果发现敏感内容：
-- 列出有问题的文件和行
-- 建议用户移除这些文件或使用环境变量
-- 在用户确认处理完之前，不要继续提交
+If sensitive content is found:
+- List the problematic files and lines
+- Suggest the user remove those files or use environment variables instead
+- Do not proceed with the commit until the user confirms the issue is resolved
 
-如果没有发现问题：继续下一步。
+If nothing is found: continue to the next step.
 
-### 4. 展示更改摘要
+### 4. Show a change summary
 
-展示 `git diff --staged` 的摘要（改了哪些文件、大致改了什么）。不需要展示完整 diff，给出简洁的中文摘要即可。
+Show a summary of `git diff --staged` (which files changed and roughly what). No need to show the full diff — a concise summary is enough.
 
-### 5. 生成 commit message
+### 5. Generate a commit message
 
-根据更改内容，生成一个符合规范的 commit message：
-- 格式：`type: 简短描述`
-- type 选择：feat / fix / docs / refactor / test / chore
-- 描述用中文，简洁说明改了什么
+Based on the changes, generate a commit message following the convention:
+- Format: `type: short description`
+- Type: feat / fix / docs / refactor / test / chore
+- Description: short and clear, in English
 
-展示生成的 message，询问用户：
-> 提交信息：`xxx`
-> 确认提交吗？可以直接说「好」，或者告诉我你想改成什么。
+Show the generated message and ask the user:
+> Commit message: `xxx`
+> Confirm commit? You can say "yes" or tell me what to change.
 
-### 6. 执行提交
+### 6. Execute the commit
 
-用户确认后，执行 `git commit`。展示提交结果。
+Once the user confirms, run `git commit`. Show the result.

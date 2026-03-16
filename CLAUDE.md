@@ -1,130 +1,130 @@
-# 项目规则
+# Project Rules
 
-<!-- 这个文件告诉 Claude Code 如何在你的项目中工作。
-     带 {{}} 的地方需要替换成你的项目信息。
-     你可以运行 /setup 让 Claude 自动帮你填写。 -->
+<!-- This file tells Claude Code how to work in your project.
+     Replace all {{}} placeholders with your project information.
+     You can run /setup to let Claude fill them in automatically. -->
 
-## 回复语言与风格
+## Response Language & Style
 
-<!-- 控制 Claude 的回复方式 -->
+<!-- Controls how Claude responds -->
 
-- 始终用中文回复
-- 回答要简洁直接，不要废话
-- 不要在回复中使用 emoji
-- 先做事，再解释（如果需要的话）
+- Always respond in English
+- Be concise and direct, no filler words
+- Do not use emoji in responses
+- Act first, explain later (if needed)
 
-## 项目基本信息
+## Project Info
 
-<!-- 告诉 Claude 你的项目是什么，这样它才能更好地理解上下文 -->
+<!-- Tell Claude what your project is so it can better understand the context -->
 
-- 项目名称：{{project_name}}
-- 技术栈：{{tech_stack}}
-- 项目描述：{{project_description}}
-- 源代码目录：{{source_dir}}
-- 测试目录：{{test_dir}}
-- Lint 命令：{{lint_command}}
+- Project name: {{project_name}}
+- Tech stack: {{tech_stack}}
+- Project description: {{project_description}}
+- Source directory: {{source_dir}}
+- Test directory: {{test_dir}}
+- Lint command: {{lint_command}}
 
-## 思维方式
+## Thinking Approach
 
-<!-- 让 Claude 用更高质量的方式思考问题，而不是无脑执行 -->
+<!-- Encourage Claude to think with higher quality, not just blindly execute -->
 
-### 第一性原理
-- 遇到问题时，从最根本的事实出发思考，不要照搬"别人都是这么做的"
-- 每个技术决策都要问：为什么要这样做？有没有更简单的方式？
-- 如果一个方案唯一的理由是"大家都这么用"，重新考虑
+### First Principles
+- When facing a problem, reason from fundamental facts — don't just copy "how everyone else does it"
+- For every technical decision, ask: why do it this way? Is there a simpler approach?
+- If the only reason for a solution is "everyone does it this way", reconsider
 
-### KISS 原则
-- Keep It Simple, Stupid — 永远选择最简单的方案
-- 能用 10 行代码解决的，不要写 50 行
-- 能用一个函数解决的，不要拆成三个类
+### KISS Principle
+- Keep It Simple, Stupid — always choose the simplest solution
+- If 10 lines can solve it, don't write 50
+- If one function can solve it, don't split it into three classes
 
-### 80/20 法则
-- 先完成最重要的 20% 功能，解决 80% 的问题
-- 不要一开始就追求完美，先让它跑起来，再优化
-- MVP 优先：能用的原型 > 完美的设计稿
+### 80/20 Rule
+- Complete the most important 20% of features first to solve 80% of the problem
+- Don't chase perfection from the start — get it running, then optimize
+- MVP first: a working prototype > a perfect design
 
-### 费曼学习法
-- 当我问你某个概念或技术时，用最简单的语言解释，就像在教一个完全不懂的人
-- 避免术语堆砌，多用类比和例子
-- 如果你不能简单地解释它，说明你还没有真正理解它
+### Feynman Technique
+- When asked about a concept or technology, explain it in the simplest language possible, as if teaching someone who knows nothing
+- Avoid jargon — use analogies and examples instead
+- If you can't explain it simply, you don't truly understand it
 
-## 代码规范
+## Code Standards
 
-<!-- 统一代码风格，避免 Claude 每次写出不同风格的代码 -->
+<!-- Enforce consistent code style so Claude doesn't write differently each time -->
 
-### 命名约定
-- 变量和函数：使用项目已有的命名风格（如 camelCase 或 snake_case）
-- 文件命名：与项目现有文件保持一致
-- 如果项目还没有明确风格，优先使用语言社区的通用规范
+### Naming Conventions
+- Variables and functions: follow the existing naming style in the project (e.g. camelCase or snake_case)
+- File naming: stay consistent with existing project files
+- If no style is established, default to the language community's common conventions
 
-### Commit Message 格式
-- 格式：`type: 简短描述`
-- type 可选值：feat（新功能）、fix（修复）、docs（文档）、refactor（重构）、test（测试）、chore（杂项）
-- 示例：`feat: 添加用户登录功能`、`fix: 修复列表排序错误`
+### Commit Message Format
+- Format: `type: short description`
+- Allowed types: feat (new feature), fix (bug fix), docs (documentation), refactor, test, chore
+- Examples: `feat: add user login`, `fix: fix list sort order`
 
-### 分支策略
-- 主分支：main
-- 新功能或修复：从 main 创建 feature/xxx 或 fix/xxx 分支
-- 完成后合并回 main
+### Branch Strategy
+- Main branch: main
+- New features or fixes: create feature/xxx or fix/xxx branches from main
+- Merge back into main when done
 
-## 安全铁律
+## Security Rules
 
-<!-- 这些规则绝对不能违反，防止你的代码泄露敏感信息或误操作 -->
+<!-- These rules must never be broken — they prevent leaking secrets or destructive mistakes -->
 
-### 不要提交敏感文件
-- 绝对不要把 .env、API Key、密码、token 提交到 git
-- 如果发现 staged 文件中包含敏感信息，立即警告并移除
-- 确保 .gitignore 覆盖了所有敏感文件类型
+### Never Commit Sensitive Files
+- Never commit .env files, API keys, passwords, or tokens to git
+- If sensitive content is found in staged files, warn immediately and remove it
+- Make sure .gitignore covers all sensitive file types
 
-### Push 前安全检查
-- 每次 push 前，扫描代码中是否有硬编码的密钥、密码、token
-- 检查是否有调试日志或临时文件被意外提交
-- 发现问题必须先修复，再 push
+### Pre-Push Security Check
+- Before every push, scan code for hardcoded secrets, passwords, or tokens
+- Check for debug logs or temp files accidentally staged
+- Fix any issues before pushing
 
-### 禁止未经确认的破坏性操作
-- 未经我明确同意，不要执行以下操作：
-  - `rm -rf`（递归删除）
-  - `git push --force`（强制推送）
-  - `git reset --hard`（丢弃所有更改）
-  - `git checkout .`（丢弃未提交的更改）
-  - 删除分支或数据库表
+### No Destructive Operations Without Confirmation
+- Without my explicit approval, never run:
+  - `rm -rf` (recursive delete)
+  - `git push --force` (force push)
+  - `git reset --hard` (discard all changes)
+  - `git checkout .` (discard uncommitted changes)
+  - Deleting branches or database tables
 
-## 工作流程
+## Workflow
 
-<!-- 确保 Claude 按正确的顺序做事，减少出错 -->
+<!-- Ensure Claude does things in the right order to reduce mistakes -->
 
-### 改代码前先读代码
-- 修改任何文件之前，先读取并理解现有代码
-- 不要对没读过的代码提出修改建议
-- 理解上下文后再动手
+### Read Before Editing
+- Before modifying any file, read and understand the existing code
+- Do not suggest changes to code you haven't read
+- Understand the context before making any changes
 
-### 编辑后先检查再提交
-- 每次修改代码后，运行 {{lint_command}} 检查代码规范
-- 运行测试确保没有破坏现有功能
-- 多文件改动时，做一次 self-review 再提交
+### Check Before Committing
+- After every code change, run {{lint_command}} to check code style
+- Run tests to ensure nothing is broken
+- For multi-file changes, do a self-review before committing
 
-### 保持简单
-- 只做被要求的事情，不要过度设计
-- 不要添加没有要求的功能、注释或重构
-- 如果一个简单的方案能解决问题，不要用复杂的方案
+### Keep It Simple
+- Only do what is asked — no over-engineering
+- Do not add unrequested features, comments, or refactors
+- If a simple solution solves the problem, don't use a complex one
 
-## 不要做什么
+## Don'ts
 
-<!-- 明确告诉 Claude 哪些事情不要做，比禁止更有效。
-     根据你的使用经验不断补充。 -->
+<!-- Explicitly tell Claude what not to do — clearer than just prohibiting it.
+     Keep adding to this based on your experience. -->
 
-- 不要在没有读过代码的情况下建议修改
-- 不要一次改太多文件，改完一批先提交再继续
-- 不要自作主张添加新依赖，先问我
-- 不要在代码里写中文注释（除非我要求）
-- 不要重复解释你做了什么，我能看到 diff
-- （在这里添加你不希望 Claude 做的事情）
+- Do not suggest changes to code you haven't read
+- Do not change too many files at once — commit in batches
+- Do not add new dependencies without asking me first
+- Do not write comments in languages other than English (unless I ask)
+- Do not re-explain what you just did — I can see the diff
+- (Add your own don'ts here)
 
-## 已知陷阱
+## Known Pitfalls
 
-<!-- 把项目中踩过的坑记在这里，Claude 下次就不会再犯同样的错误。
-     格式：简短描述问题 + 正确的做法。 -->
+<!-- Record project-specific gotchas here so Claude doesn't repeat the same mistakes.
+     Format: brief description of the problem + correct approach. -->
 
-- 示例：修改 .env.example 后要同步更新文档中的环境变量说明
-- 示例：数据库迁移文件不要手动修改，用框架命令生成
-- （在这里添加你项目的已知陷阱）
+- Example: After modifying .env.example, always update the env variable docs as well
+- Example: Never manually edit database migration files — use the framework CLI to generate them
+- (Add your own project-specific pitfalls here)
